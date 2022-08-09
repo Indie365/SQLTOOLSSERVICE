@@ -413,18 +413,11 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectExplorer.Nodes
                 return CompareSamePriorities(this, other);
             }
 
-            if (this.SortPriority.HasValue &&
-                !other.SortPriority.HasValue)
-            {
-                return -1; // this is above other
-            }
-            if (!this.SortPriority.HasValue)
-            {
-                return 1; // this is below other
-            }
+            int thisPriority = this.SortPriority.HasValue ? this.SortPriority.Value : 0;
+            int otherPriority = other.SortPriority.HasValue ? other.SortPriority.Value : 0;
 
             // Both have sort priority
-            int priDiff = this.SortPriority.Value - other.SortPriority.Value;
+            int priDiff = thisPriority - otherPriority;
             if (priDiff < 0)
                 return -1; // this is below other
             if (priDiff == 0)

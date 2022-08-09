@@ -64,7 +64,8 @@ namespace Microsoft.SqlTools.ServiceLayer.ObjectExplorer.Nodes
             {
                 try
                 {
-                    if (!IsSorted)
+                    // Add comment here
+                    if (!IsSorted || this.FirstOrDefault((node) => { return node is FolderNode && node.NodeTypeId == NodeTypes.SystemTables; }) != null)
                     {
                         DoSort();
                     }
