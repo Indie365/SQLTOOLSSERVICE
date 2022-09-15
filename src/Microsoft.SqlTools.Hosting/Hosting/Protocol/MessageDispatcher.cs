@@ -281,7 +281,7 @@ namespace Microsoft.SqlTools.Hosting.Protocol
                     // Verbose logging
                     string logMessage =
                         $"Received message with id[{newMessage.Id}], of type[{newMessage.MessageType}] and method[{newMessage.Method}]";
-                    Logger.Write(TraceEventType.Verbose, logMessage);
+                    Logger.Write(TraceEventType.Warning, logMessage);
 
                     // Process the message
                     await this.DispatchMessage(newMessage, this.MessageWriter);
@@ -353,9 +353,9 @@ namespace Microsoft.SqlTools.Hosting.Protocol
         {
             try
             {
-                Logger.Write(TraceEventType.Verbose, $"Processing message with id[{message.Id}], of type[{message.MessageType}] and method[{message.Method}]");
+                Logger.Write(TraceEventType.Warning, $"Processing message with id[{message.Id}], of type[{message.MessageType}] and method[{message.Method}]");
                 await task;
-                Logger.Write(TraceEventType.Verbose, $"Finished processing message with id[{message.Id}], of type[{message.MessageType}] and method[{message.Method}]");
+                Logger.Write(TraceEventType.Warning, $"Finished processing message with id[{message.Id}], of type[{message.MessageType}] and method[{message.Method}]");
             }
             catch (TaskCanceledException)
             {
